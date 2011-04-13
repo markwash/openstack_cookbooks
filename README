@@ -1,0 +1,8 @@
+= Openstack Cookbooks
+
+A set of Chef cookbooks for Openstack.
+
+== Description
+
+Chef cookbooks for nova, glance, mysql, etc. to help setup and configure
+Openstack in Cloud Servers VPC type environments.
