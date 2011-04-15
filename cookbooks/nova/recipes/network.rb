@@ -20,6 +20,10 @@
 include_recipe "nova::common"
 nova_package("network")
 
+if node[:nova][:use_ipv6] == "True" then
+	package "radvd"
+end
+
 execute "sysctl -p" do
   user "root"
   action :nothing
