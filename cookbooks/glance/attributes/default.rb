@@ -17,5 +17,11 @@ default[:glance][:sql_idle_timeout] = "3600"
 default[:glance][:default_store] = "file"
 default[:glance][:filesystem_store_datadir] = "/var/lib/glance/images"
 
+default[:glance][:swift_store_auth_address] = "127.0.0.1:8080/v1.0/"
+default[:glance][:swift_store_user] = "jdoe"
+default[:glance][:swift_store_key] = "a86850deb2742ec3cb41518e26aa2d89"
+default[:glance][:swift_store_container] = "glance"
+default[:glance][:swift_store_create_container_on_put] = "False"
+
 # automatically glance upload the tty linux image. (glance::setup recipe)
 default[:glance][:tty_linux_image] = "http://images.ansolabs.com/tty.tgz"

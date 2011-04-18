@@ -1,6 +1,3 @@
-#--working_directory=<%= node[:glance][:working_directory] %>
-#--logdir=<%= node[:glance][:logdir] %>
-
 [DEFAULT]
 # Show more verbose log output (sets INFO log level output)
 verbose = <%= node[:glance][:verbose] %>
@@ -10,10 +7,6 @@ debug = <%= node[:glance][:debug] %>
 
 [app:glance-api]
 paste.app_factory = glance.server:app_factory
-
-# Directory that the Filesystem backend store
-# writes image data to
-filesystem_store_datadir=<%= node[:glance][:filesystem_store_datadir] %>
 
 # Which backend store should Glance use by default is not specified
 # in a request to add a new image to Glance? Default: 'file'
@@ -31,6 +24,31 @@ registry_host = <%= node[:glance][:registry_host] %>
 
 # Port the registry server is listening on
 registry_port = <%= node[:glance][:registry_bind_port] %>
+
+# ============ Filesystem Store Options ========================
+
+# Directory that the Filesystem backend store
+# writes image data to
+filesystem_store_datadir=<%= node[:glance][:filesystem_store_datadir] %>
+
+# ============ Swift Store Options =============================
+
+# Address where the Swift authentication service lives
+swift_store_auth_address = <%= node[:glance][:swift_store_auth_address] %>
+
+# User to authenticate against the Swift authentication service
+swift_store_user = <%= node[:glance][:swift_store_user] %>
+
+# Auth key for the user authenticating against the
+# Swift authentication service
+swift_store_key = <%= node[:glance][:swift_store_key] %>
+
+# Container within the account that the account should use
+# for storing images in Swift
+swift_store_container = <%= node[:glance][:swift_store_container] %>
+
+# Do we create the container if it does not exist?
+swift_store_create_container_on_put = <%= node[:glance][:swift_store_create_container_on_put] %>
 
 [app:glance-registry]
 paste.app_factory = glance.registry.server:app_factory
