@@ -11,9 +11,9 @@ bash "tty linux setup" do
   code <<-EOH
 	mkdir -p /var/lib/glance/
 	curl #{node[:glance][:tty_linux_image]} | tar xvz -C /tmp/
-	glance-upload --type ramdisk /tmp/ari-tty/image ari-tty
-	glance-upload --type kernel /tmp/aki-tty/image aki-tty
-	glance-upload --type machine /tmp/ami-tty/image ami-tty --ramdisk=1 --kernel=2
+	glance add name="ari-tty" type="ramdisk" disk_format="ari" container_format="ari" is_public=true < /tmp/tty_linux/ramdisk
+	glance add name="aki-tty" type="kernel" disk_format="aki" container_format="aki" is_public=true < /tmp/tty_linux/kernel
+	glance add name="ami-tty" type="kernel" disk_format="ami" container_format="ami" ramdisk_id="1" kernel_id="2" is_public=true < /tmp/tty_linux/image
 	touch /var/lib/glance/tty_setup
   EOH
   not_if do File.exists?("/var/lib/glance/tty_setup") end

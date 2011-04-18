@@ -24,4 +24,4 @@ default[:glance][:swift_store_container] = "glance"
 default[:glance][:swift_store_create_container_on_put] = "False"
 
 # automatically glance upload the tty linux image. (glance::setup recipe)
-default[:glance][:tty_linux_image] = "http://images.ansolabs.com/tty.tgz"
+default[:glance][:tty_linux_image] = "http://c3226372.r72.cf0.rackcdn.com/tty_linux.tar.gz"
