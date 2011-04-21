@@ -1,5 +1,5 @@
-name "mysql-server"
-description "MySQL server"
+name "nova-mysql-server"
+description "MySQL server for Nova"
 
 run_list(
   "recipe[build-essential]",
