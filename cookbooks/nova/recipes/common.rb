@@ -53,6 +53,21 @@ if node[:nova][:mysql]
     Chef::Log.info("Using local mysql at  #{mysql[:mysql][:bind_address]}")
   end
   sql_connection = "mysql://#{mysql[:nova][:db][:user]}:#{mysql[:nova][:db][:password]}@#{mysql[:mysql][:bind_address]}/#{mysql[:nova][:db][:database]}"
+elsif node[:nova][:postgresql]
+  Chef::Log.info("Using postgresql")
+  postgresqls = nil
+
+  unless Chef::Config[:solo]
+    postgresqls = search(:node, "recipes:nova\\:\\:postgresql#{env_filter}")
+  end
+  if postgresqls and postgresqls[0]
+    postgresql = postgresqls[0]
+    Chef::Log.info("PostgreSQL server found at #{postgresql[:ipaddress]}")
+  else
+    postgresql = node
+    Chef::Log.info("Using local PostgreSQL at #{postgresql[:ipaddress]}")
+  end
+  sql_connection = "postgresql://#{postgresql[:nova][:db][:user]}:#{postgresql[:nova][:db][:password]}@#{postgresql[:ipaddress]}/#{postgresql[:nova][:db][:database]}"
 end
 
 rabbits = nil

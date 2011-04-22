@@ -29,6 +29,7 @@ default[:nova][:my_ip] = ipaddress
 default[:nova][:public_interface] = "eth1"
 default[:nova][:vlan_interface] = "eth1"
 default[:nova][:mysql] = true
+default[:nova][:postgresql] = false
 default[:nova][:images] = []
 default[:nova][:network] = "10.0.0.0/24 8 32"
 default[:nova][:floating_range] = "10.128.0.0/24"
