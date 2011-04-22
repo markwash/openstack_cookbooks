@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: nova
-# Attributes:: mysql
+# Attributes:: database
 #
 # Copyright 2008-2009, Opscode, Inc.
 #
